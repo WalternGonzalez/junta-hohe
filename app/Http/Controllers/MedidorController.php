@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers;
+
+
+use Illuminate\Http\Request;
+use App\Models\Medidor;
+class MedidorController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+      $medidors = Medidor::all();
+      return view('medidor.index')->with('medidors',$medidors);
+    }
+
+    public function create()
+    {
+      return view('medidor.create');
+    }
+
+    public function store(Request $request)
+    {
+      $medidors = new Medidor();
+
+        $medidors->medi_numero = $request->get('medi_numero');
+        $medidors->medi_descripcion = $request->get('medi_descripcion');
+        $medidors->medi_estado = $request->get('medi_estado'); 
+
+        $medidors->save();
+
+        return redirect('/medidor'); 
+
+    }
+
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+      $medidor = Medidor::find($id);
+      return view('medidor.edit')->with('medidor',$medidor);
+    }
+
+    public function update(Request $request, $id)
+    {
+      $medidor = Medidor::find($id);
+
+      $medidor->medi_numero = $request->get('medi_numero');
+      $medidor->medi_descripcion = $request->get('medi_descripcion');
+      $medidor->medi_estado = $request->get('medi_estado'); 
+
+      $medidor->save();
+
+      return redirect('/medidor'); 
+    }
+
+    public function destroy($id)
+    {
+      $medidor = Medidor::find($id);
+      $medidor->delete();
+      return redirect('/medidor'); 
+    }
+}
