@@ -10,9 +10,9 @@
 
 @section('content')
 {{--<a href="medidor/create" class="btn btn-primary">CREAR</a>  --}}
-<button type="button" class="btn btn-primary align-items-center p-2 my-3" data-toggle="modal" data-target="#modal-default"> 
-    Crear Medidor
-  </button>
+<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default">
+  <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Registro
+</button>
 <br>
 <table class="table">
     <thead>

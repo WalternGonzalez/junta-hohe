@@ -251,8 +251,8 @@ return [
             'icon' => 'fas fa-clipboard-list',
         ],
         [
-            'text' => 'Usuarios',
-            'url'  => 'admin/settings',
+            'text' => 'Servicios',
+            'url'  => 'servicio',
             'icon' => 'fas fa-users',
         ],
 

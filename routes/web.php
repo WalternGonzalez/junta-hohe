@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MedidorController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\ServicioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +25,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
 
 Route::resource('medidor', 'App\Http\Controllers\MedidorController');
 Route::resource('tarifa', 'App\Http\Controllers\TarifaController');
+Route::resource('servicio', 'App\Http\Controllers\ServicioController');

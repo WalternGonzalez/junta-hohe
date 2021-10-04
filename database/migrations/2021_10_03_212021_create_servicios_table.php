@@ -14,8 +14,12 @@ class CreateServiciosTable extends Migration
     public function up()
     {
         Schema::create('servicios', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('serv_descripcion');
+            $table->timestamps();
+
+            $table->bigInteger('impu_codigo')->unsigned()->index(); 
+            $table->foreign('impu_codigo')->references('id')->on('impuestos')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
