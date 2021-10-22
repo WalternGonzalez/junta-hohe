@@ -1,4 +1,4 @@
-{{-- comment 
+{{-- comment  
 
 @extends('adminlte::page')
 

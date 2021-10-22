@@ -3,11 +3,15 @@
 @section('title', 'Junta Cerro Cora ')
 
 @section('content_header')
-    <h1>BIENVENIDO</h1>
+    <h1>Lista de Usuarios</h1>
 @stop
 
 @section('content')
 
+{{-- Llamar a Liviwire --}}
+
+ @livewire('admin.users-index')
+ 
 @stop
 
 @section('css')

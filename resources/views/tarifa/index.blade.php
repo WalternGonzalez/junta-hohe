@@ -9,10 +9,13 @@
 </div>
 
 <section class="content" >
+
+    @can('tarifa.create')
     <button type="button" class="btn btn-primary align-items-center p-2 my-3" data-toggle="modal" data-target="#modal-default"> 
         Crear Tarifa    
-      </button>
-    <table class="table">
+      </button>         
+    @endcan
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -20,6 +23,7 @@
               <th scope="col">tari_m3_precio</th>
               <th scope="col">tari_imp_minimo</th>
               <th scope="col">tari_m3_minimo</th>
+              <th scope="col">Opciones</th>
             </tr>
           </thead>
         <tbody>
@@ -31,11 +35,18 @@
                     <td>{{$tarifa->tari_imp_minimo}}</td>
                     <td>{{$tarifa->tari_m3_minimo}}</td>
                     <td>
+
+                        @can('tarifa.destroy')                       
                     <form action="{{ route ('tarifa.destroy', $tarifa->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
+                        @endcan
+
+                        @can('tarifa.edit')  
                         <a href="/tarifa/{{$tarifa->id}}/edit" class="btn btn-info">Editar</a>
                     <button type="submit" class= "btn btn-danger">Borrar</button>
+                        @endcan
+
                     </form>
                 </td>
                 </tr>

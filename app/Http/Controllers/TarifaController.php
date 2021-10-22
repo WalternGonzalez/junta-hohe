@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 
 class TarifaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct() 
+    {
+        
+        $this->middleware('can:tarifa.index')->only('index');
+        $this->middleware('can:tarifa.create')->only('create','store');
+        $this->middleware('can:tarifa.edit')->only('edit', 'update');
+        $this->middleware('can:tarifa.destroy')->only('destroy');
+  
+    }
+
+
     public function index()
     {
         $tarifas = Tarifa::all();

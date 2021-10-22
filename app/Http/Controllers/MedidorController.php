@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\Medidor;
 class MedidorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+  public function __construct() 
+  {
+      
+      $this->middleware('can:medidor.index')->only('index');
+      $this->middleware('can:medidor.create')->only('create', 'store');
+      $this->middleware('can:medidor.edit')->only('edit', 'update');
+      $this->middleware('can:medidor.destroy')->only('destroy');
+
+  }
+
+
     public function index()
     {
       $medidors = Medidor::all();
@@ -43,11 +50,13 @@ class MedidorController extends Controller
         //
     }
 
+
     public function edit($id)
     {
       $medidor = Medidor::find($id);
       return view('medidor.edit')->with('medidor',$medidor);
     }
+
 
     public function update(Request $request, $id)
     {
@@ -61,6 +70,7 @@ class MedidorController extends Controller
 
       return redirect('/medidor'); 
     }
+
 
     public function destroy($id)
     {

@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\DB;
 class ServicioController extends Controller
 {
     
+    public function __construct() 
+    {
+        
+        $this->middleware('can:servicio.index')->only('index');
+        $this->middleware('can:servicio.create')->only('create','store');
+        $this->middleware('can:servicio.edit')->only('edit', 'update');
+        $this->middleware('can:servicio.destroy')->only('destroy');
+  
+    }
+
+
     public function index()
     {
         $servicios = Servicio::with('impuesto')->orderBy('id')->get();

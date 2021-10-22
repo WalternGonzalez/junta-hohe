@@ -3,7 +3,7 @@
 @section('title', 'Junta Cerro Cora ')
 
 @section('content_header')
-    <h1>BIENVENIDO</h1>
+    <h1>Mostrar Rol</h1>
 @stop
 
 @section('content')

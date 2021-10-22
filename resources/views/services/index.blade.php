@@ -13,14 +13,16 @@
     <div class="col-md-8">
         <form action="simple-results.html">
             <div class="input-group">
-                <input type="search" class="form-control form-control-lg" placeholder="Ingrese su bÃºsqueda">
+                <input type="search" class="form-control form-control-lg" placeholder="Ingrese su Búsqueda">
                     <button type="submit" class="btn btn-lg btn-default">
                         <i class="fa fa-search"></i>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @can('servicio.create')
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default">
                         <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo registro
                     </button>
+                    @endcan
             </div>
         </form>
     </div>
@@ -33,6 +35,7 @@
         <th scope="col">ID</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Impuesto</th>
+        <th scope="col">Opciones</th>
       </tr>
     </thead>
     <tbody>
@@ -42,12 +45,16 @@
                 <td>{{ $servicio->serv_descripcion}}</td>
                 <td>{{ $servicio->impuesto->impu_descripcion}}</td>
                 <td>
+                    @can('servicio.destroy')
                     <form action="{{ route ('servicio.destroy', $servicio->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
+                    @endcan
+
+                    @can('servicio.edit')
                         <a href="/servicio/{{$servicio->id}}/edit" class="btn btn-info">Editar</a>
                     <button type="submit" class= "btn btn-danger">Borrar</button>
-
+                    @endcan
                     </form>
                 </td>
             </tr>

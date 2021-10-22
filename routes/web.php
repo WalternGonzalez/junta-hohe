@@ -1,28 +1,29 @@
 <?php
 
-use App\Http\Controllers\MedidorController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServicioController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\MedidorController;
+use App\Http\Controllers\TarifaController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+
 
 Route::get('/', function () {
     return view('auth.login');
     
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
+Route::middleware(['auth:sanctum', 'verified'])->middleware('can:dash.index')->get('/dash', function () {
+
     return view('dash.index');
 })->name('dash');
 
 Route::resource('medidor', 'App\Http\Controllers\MedidorController');
 Route::resource('tarifa', 'App\Http\Controllers\TarifaController');
 Route::resource('servicio', 'App\Http\Controllers\ServicioController');
+Route::resource('users', UserController::class)->only (['index', 'edit', 'update'])->names('users');
+
+//Roles
+
+Route::resource('roles', RoleController::class)->names('roles');
+    

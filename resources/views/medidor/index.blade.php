@@ -6,13 +6,15 @@
 <div class="d-flex align-items-center p-4 my-0 text-white bg-blue rounded shadow-sm">
     <h1>MOSTRAR MEDIDORES</h1>
 </div>
+
 @stop
 
 @section('content')
-{{--<a href="medidor/create" class="btn btn-primary">CREAR</a>  --}}
-<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default">
+@can('servicio.create')
+<button class="btn btn-primary align-items-center p-2 my-3" type="button" data-toggle="modal" data-target="#modal-default" >
   <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Registro
 </button>
+@endcan
 <br>
 <table class="table">
     <thead>
@@ -21,6 +23,7 @@
         <th scope="col">Numero Medidor</th>
         <th scope="col">Descripción</th>
         <th scope="col">Estado Medidor</th>
+        <th scope="col">Opciones</th>
       </tr>
     </thead>
     <tbody>
@@ -31,13 +34,18 @@
                 <td>{{ $medidor->medi_descripcion}}</td>
                 <td>{{ $medidor->medi_estado}}</td>
                 <td>
+                  @can('medidor.destroy')
                     <form action="{{ route ('medidor.destroy', $medidor->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
+                  @endcan
+                  @can('medidor.edit')
                         <a href="/medidor/{{$medidor->id}}/edit" class="btn btn-info">Editar</a>
                     <button type="submit" class= "btn btn-danger">Borrar</button>
-
+                  @endcan
                     </form>
+
+
                 </td>
             </tr>
         @endforeach
@@ -51,7 +59,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">Crear Medidor</h3>
+          <h3 class="modal-title">Nuevo Medidor</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

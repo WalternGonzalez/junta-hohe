@@ -19,6 +19,7 @@ class CreateMedidoresTable extends Migration
             $table->string('medi_descripcion')->nullable();
             $table->string('medi_estado')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }
