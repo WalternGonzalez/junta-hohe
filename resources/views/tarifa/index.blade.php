@@ -9,13 +9,10 @@
 </div>
 
 <section class="content" >
-
-    @can('tarifa.create')
     <button type="button" class="btn btn-primary align-items-center p-2 my-3" data-toggle="modal" data-target="#modal-default"> 
         Crear Tarifa    
-      </button>         
-    @endcan
-    <table class="table table-striped">
+      </button>
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -23,7 +20,6 @@
               <th scope="col">tari_m3_precio</th>
               <th scope="col">tari_imp_minimo</th>
               <th scope="col">tari_m3_minimo</th>
-              <th scope="col">Opciones</th>
             </tr>
           </thead>
         <tbody>
@@ -35,23 +31,17 @@
                     <td>{{$tarifa->tari_imp_minimo}}</td>
                     <td>{{$tarifa->tari_m3_minimo}}</td>
                     <td>
-
-                        @can('tarifa.destroy')                       
-                    <form action="{{ route ('tarifa.destroy', $tarifa->id)}}" method="POST">
+                    <form action="{{ route ('tarifa.destroy', $tarifa->id)}}" class="formulario-eliminar" method="POST">
+                        @method('DELETE')        
                         @csrf
-                        @method('DELETE')
-                        @endcan
-
-                        @can('tarifa.edit')  
                         <a href="/tarifa/{{$tarifa->id}}/edit" class="btn btn-info">Editar</a>
                     <button type="submit" class= "btn btn-danger">Borrar</button>
-                        @endcan
-
                     </form>
                 </td>
                 </tr>
             @endforeach
         </tbody> 
+        
       </table>
 
 {{-- MODAL CREAR --}}
@@ -71,22 +61,22 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="tari_descripcion" autocomplete="off" input id="tari_descripcion" name="tari_descripcion" type="text" class="form-control" tabindex="1">
+                            <input class="form-control" placeholder="tari_descripcion" autocomplete="off" input id="tari_descripcion" name="tari_descripcion" type="text" class="form-control" tabindex="1" required>
                         </div>
                     </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="tari_imp_minimo" autocomplete="off" input id="tari_imp_minimo" name="tari_imp_minimo" type="number" class="form-control" tabindex="1">
+                                <input class="form-control" placeholder="tari_imp_minimo" autocomplete="off" input id="tari_imp_minimo" name="tari_imp_minimo" type="number" class="form-control" tabindex="1" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="tari_m3_precio" autocomplete="off" input id="tari_m3_precio" name="tari_m3_precio" type="number" class="form-control" tabindex="1">
+                                <input class="form-control" placeholder="tari_m3_precio" autocomplete="off" input id="tari_m3_precio" name="tari_m3_precio" type="number" class="form-control" tabindex="1" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="tari_m3_minimo" autocomplete="off" input id="tari_m3_minimo" name="tari_m3_minimo" type="number" class="form-control" tabindex="1">
+                                <input class="form-control" placeholder="tari_m3_minimo" autocomplete="off" input id="tari_m3_minimo" name="tari_m3_minimo" type="number" class="form-control" tabindex="1" required>
                             </div>
                         </div>
                     <div>
@@ -100,7 +90,51 @@
         </div>
       </div>
     </div>
-  <!-- /.modal CREAR-->
-
+  <!-- /.modal CREAR--> 
 </section>
+
 @endsection
+
+@section('js')   
+
+
+    {{-- JS PARA ALET DIALOG --}}
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('eliminar') == 'ok')
+    <script>
+
+     Swal.fire(
+        'Eliminado!',
+        'Se ha eliminado correctamente.',
+        'success'
+        )
+
+    </script>
+    @endif
+
+<script>
+    $('.formulario-eliminar').submit(function(e){
+        e.preventDefault();
+
+        Swal.fire({
+    title: 'Estás Seguro?',
+    text: "Deseas eliminar de forma permanente!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+    if (result.isConfirmed) {
+
+        this.submit();
+    }
+    }) 
+    });
+
+</script>  
+@endsection
+
+

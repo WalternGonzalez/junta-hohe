@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medidor;
+use Validator;
 class MedidorController extends Controller
 {
 
@@ -32,6 +33,20 @@ class MedidorController extends Controller
 
     public function store(Request $request)
     {
+
+      /* VALIDACION DE FORMULARIO */
+
+      $request->validate([
+
+        'medi_numero' => 'required',
+        'medi_descripcion' => 'required',
+        'medi_estado' => 'required'
+
+      ]);
+
+
+
+
       $medidors = new Medidor();
 
         $medidors->medi_numero = $request->get('medi_numero');
@@ -53,6 +68,7 @@ class MedidorController extends Controller
 
     public function edit($id)
     {
+      
       $medidor = Medidor::find($id);
       return view('medidor.edit')->with('medidor',$medidor);
     }
@@ -60,6 +76,16 @@ class MedidorController extends Controller
 
     public function update(Request $request, $id)
     {
+
+      $request->validate([
+
+        'medi_numero' => 'required',
+        'medi_descripcion' => 'required',
+        'medi_estado' => 'required'
+
+      ]);
+
+
       $medidor = Medidor::find($id);
 
       $medidor->medi_numero = $request->get('medi_numero');
@@ -76,6 +102,6 @@ class MedidorController extends Controller
     {
       $medidor = Medidor::find($id);
       $medidor->delete();
-      return redirect('/medidor'); 
+      return redirect('/medidor')->with('eliminar', 'ok'); 
     }
 }

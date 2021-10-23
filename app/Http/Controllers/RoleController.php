@@ -93,6 +93,6 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('roles.index', $role)->with('info', 'El rol se eliminó con éxito');
+        return redirect()->route('roles.index', $role)->with('eliminar', 'ok');
     }
 }

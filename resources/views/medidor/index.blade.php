@@ -12,7 +12,7 @@
 @section('content')
 @can('servicio.create')
 <button class="btn btn-primary align-items-center p-2 my-3" type="button" data-toggle="modal" data-target="#modal-default" >
-  <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Registro
+  <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Medidor
 </button>
 @endcan
 <br>
@@ -35,7 +35,7 @@
                 <td>{{ $medidor->medi_estado}}</td>
                 <td>
                   @can('medidor.destroy')
-                    <form action="{{ route ('medidor.destroy', $medidor->id)}}" method="POST">
+                    <form action="{{ route ('medidor.destroy', $medidor->id)}}" class="formulario-eliminar" method="POST">
                         @csrf
                         @method('DELETE')
                   @endcan
@@ -71,17 +71,31 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="NUMERO MEDIDOR" autocomplete="off" input id="medi_numero" name="medi_numero" type="text" class="form-control" tabindex="1">
+                            <input class="form-control" placeholder="NUMERO MEDIDOR" autocomplete="off" input id="medi_numero" name="medi_numero" type="text" class="form-control" tabindex="1" value="{{old('medi_numero')}}">
+                               {{-- VALIDAR FORMULARIO CON JS --}}
+                              @error('medi_numero')
+                                  <br>
+                                    <small> *{{$message}} </small> 
+                                  <br>
+                              @enderror
+                               
                         </div>
                     </div>
                         <div class="form-group row">
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="DESCRIPCION" id="medi_descripcion" name="medi_descripcion" type="text" class="form-control" tabindex="2">
+                            <input class="form-control" placeholder="DESCRIPCION" id="medi_descripcion" name="medi_descripcion" type="text" class="form-control" tabindex="2" value="{{old('medi_descripcion')}}">
+                            {{-- VALIDAR FORMULARIO CON JS --}}
+                              @error('medi_descripcion')
+                                  <br>
+                                    <small> *{{$message}} </small> 
+                                  <br>
+                              @enderror
+                               
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="3" aria-hidden="true" name="medi_estado" id="medi_estado">
+                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="3" aria-hidden="true" name="medi_estado" id="medi_estado" value="{{old('medi_estado')}}">
                                 <option>Activo</option>
                                 <option>Inactivo</option>
                             </select>
@@ -107,5 +121,44 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-@stop   
+
+
+    {{-- JS PARA ALET DIALOG --}}
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('eliminar') == 'ok')
+    <script>
+
+     Swal.fire(
+        'Eliminado!',
+        'Se ha eliminado correctamente.',
+        'success'
+        )
+
+    </script>
+    @endif
+
+<script>
+    $('.formulario-eliminar').submit(function(e){
+        e.preventDefault();
+
+        Swal.fire({
+    title: 'Estás Seguro?',
+    text: "Deseas eliminar de forma permanente!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+    if (result.isConfirmed) {
+
+        this.submit();
+    }
+    }) 
+    });
+
+</script>  
+@endsection
+

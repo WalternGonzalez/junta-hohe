@@ -23,11 +23,23 @@
     <div class="card-body">
         <div class="form-group">
             <label for="" class="form-label">Numero de Medidor</label>
-            <input id="medi_numero" name="medi_numero" type="text" class="form-control" value="{{$medidor->medi_numero}}">
+            <input id="medi_numero" name="medi_numero" type="text" class="form-control" value="{{old('medi_numero', $medidor->medi_numero)}}">
+                {{-- VALIDAR FORMULARIO CON JS --}}
+                @error('medi_numero')
+                    <br>
+                        <small> *{{$message}} </small> 
+                    <br>
+                @enderror           
         </div>
         <div class="form-group">
             <label for="" class="form-label">Descripción</label>
-            <input id="medi_descripcion" name="medi_descripcion" type="text" class="form-control" value="{{$medidor->medi_descripcion}}">
+            <input id="medi_descripcion" name="medi_descripcion" type="text" class="form-control" value="{{old('medi_descripcion', $medidor->medi_descripcion)}}">
+                {{-- VALIDAR FORMULARIO CON JS --}}
+                @error('medi_descripcion')
+                    <br>
+                        <small> *{{$message}} </small> 
+                    <br>
+                @enderror              
         </div>
 
         <div class="form-group">

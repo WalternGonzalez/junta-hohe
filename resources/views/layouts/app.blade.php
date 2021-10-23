@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @livewireStyles
 
         <!-- Scripts -->

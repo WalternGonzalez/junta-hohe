@@ -82,6 +82,6 @@ class TarifaController extends Controller
     {
         $tarifa = Tarifa::find($id);
         $tarifa->delete();
-        return redirect('/tarifa'); 
+        return redirect('/tarifa')->with('eliminar', 'ok'); 
     }
 }

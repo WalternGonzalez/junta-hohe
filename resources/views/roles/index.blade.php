@@ -34,7 +34,7 @@
              <td>{{$role->name}}</td>
              <td>
                 @can('roles.destroy')    
-                <form action="{{ route ('roles.destroy', $role)}}" method="POST">
+                <form action="{{ route ('roles.destroy', $role)}}" class="formulario-eliminar"  method="POST">
                     @csrf
                     @method('DELETE')
                 @endcan
@@ -61,5 +61,44 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+
+
+
+    {{-- JS PARA ALET DIALOG --}}
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('eliminar') == 'ok')
+    <script>
+
+     Swal.fire(
+        'Eliminado!',
+        'Se ha eliminado correctamente.',
+        'success'
+        )
+
+    </script>
+    @endif
+
+<script>
+    $('.formulario-eliminar').submit(function(e){
+        e.preventDefault();
+
+        Swal.fire({
+    title: 'Estás Seguro?',
+    text: "Deseas eliminar de forma permanente!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+    if (result.isConfirmed) {
+
+        this.submit();
+    }
+    }) 
+    });
+
+</script>  
+@endsection
