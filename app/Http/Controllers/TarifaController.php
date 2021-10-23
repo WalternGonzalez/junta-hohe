@@ -38,6 +38,19 @@ class TarifaController extends Controller
  
     public function store(Request $request)
     {
+
+          /* VALIDACION DE FORMULARIO */  
+          $request->validate([
+
+            'tari_descripcion' => 'required',
+            'tari_m3_precio' => 'required',
+            'tari_imp_minimo' => 'required',
+            'tari_m3_minimo' => 'required'
+    
+          ]);
+
+
+
         $tarifas = new Tarifa();
 
         $tarifas->tari_descripcion = $request->get('tari_descripcion');
@@ -65,6 +78,16 @@ class TarifaController extends Controller
  
     public function update(Request $request, $id)
     {
+          /* VALIDACION DE FORMULARIO */  
+        $request->validate([
+
+            'tari_descripcion' => 'required',
+            'tari_m3_precio' => 'required',
+            'tari_imp_minimo' => 'required',
+            'tari_m3_minimo' => 'required'
+    
+          ]);
+
         $tarifa = Tarifa::find($id);
 
         $tarifa->tari_descripcion = $request->get('tari_descripcion');

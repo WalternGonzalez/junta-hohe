@@ -74,8 +74,7 @@
                             <input class="form-control" placeholder="NUMERO MEDIDOR" autocomplete="off" input id="medi_numero" name="medi_numero" type="text" class="form-control" tabindex="1" value="{{old('medi_numero')}}">
                                {{-- VALIDAR FORMULARIO CON JS --}}
                               @error('medi_numero')
-                                  <br>
-                                    <small> *{{$message}} </small> 
+                                  <small class="text-danger">  *{{$message}} </small> 
                                   <br>
                               @enderror
                                
@@ -86,8 +85,7 @@
                             <input class="form-control" placeholder="DESCRIPCION" id="medi_descripcion" name="medi_descripcion" type="text" class="form-control" tabindex="2" value="{{old('medi_descripcion')}}">
                             {{-- VALIDAR FORMULARIO CON JS --}}
                               @error('medi_descripcion')
-                                  <br>
-                                    <small> *{{$message}} </small> 
+                                  <small class="text-danger">  *{{$message}} </small> 
                                   <br>
                               @enderror
                                

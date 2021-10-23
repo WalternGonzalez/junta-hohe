@@ -38,6 +38,17 @@ class ServicioController extends Controller
     
     public function store(Request $request)
     {
+
+
+        $request->validate([
+
+            'serv_descripcion' => 'required',
+            'impu_codigo' => 'required',
+    
+          ]);
+    
+
+
         $servicios = new Servicio();
         $servicios->serv_descripcion = $request->serv_descripcion;
         $servicios->impu_codigo = $request->impu_codigo; 
@@ -72,6 +83,15 @@ class ServicioController extends Controller
     
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+
+            'serv_descripcion' => 'required',
+            'impu_codigo' => 'required',
+    
+          ]);
+    
+
         $servicio = Servicio::find($id);
 
         $servicio->serv_descripcion = $request->get('serv_descripcion');

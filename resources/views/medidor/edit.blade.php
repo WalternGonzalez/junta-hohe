@@ -26,8 +26,7 @@
             <input id="medi_numero" name="medi_numero" type="text" class="form-control" value="{{old('medi_numero', $medidor->medi_numero)}}">
                 {{-- VALIDAR FORMULARIO CON JS --}}
                 @error('medi_numero')
-                    <br>
-                        <small> *{{$message}} </small> 
+                <small class="text-danger"> *{{$message}} </small> 
                     <br>
                 @enderror           
         </div>
@@ -36,8 +35,8 @@
             <input id="medi_descripcion" name="medi_descripcion" type="text" class="form-control" value="{{old('medi_descripcion', $medidor->medi_descripcion)}}">
                 {{-- VALIDAR FORMULARIO CON JS --}}
                 @error('medi_descripcion')
-                    <br>
-                        <small> *{{$message}} </small> 
+
+                        <small class="text-danger"> *{{$message}} </small> 
                     <br>
                 @enderror              
         </div>

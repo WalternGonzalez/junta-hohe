@@ -61,22 +61,38 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="tari_descripcion" autocomplete="off" input id="tari_descripcion" name="tari_descripcion" type="text" class="form-control" tabindex="1" required>
+                            <input class="form-control" placeholder="tari_descripcion" autocomplete="off" input id="tari_descripcion" name="tari_descripcion" type="text" class="form-control" tabindex="1" value="{{old('tari_descripcion')}}">
+                                @error('tari_descripcion')
+                                    <small class="text-danger">  *{{$message}} </small> 
+                                <br>
+                            @enderror
                         </div>
                     </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="tari_imp_minimo" autocomplete="off" input id="tari_imp_minimo" name="tari_imp_minimo" type="number" class="form-control" tabindex="1" required>
+                                <input class="form-control" placeholder="tari_imp_minimo" autocomplete="off" input id="tari_imp_minimo" name="tari_imp_minimo" type="number" class="form-control" tabindex="1" value="{{old('tari_imp_minimo')}}">
+                                    @error('tari_imp_minimo')
+                                        <small class="text-danger">  *{{$message}} </small> 
+                                        <br>
+                                    @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="tari_m3_precio" autocomplete="off" input id="tari_m3_precio" name="tari_m3_precio" type="number" class="form-control" tabindex="1" required>
+                                <input class="form-control" placeholder="tari_m3_precio" autocomplete="off" input id="tari_m3_precio" name="tari_m3_precio" type="number" class="form-control" tabindex="1" value="{{old('tari_m3_precio')}}">
+                                @error('tari_m3_precio')
+                                    <small class="text-danger">  *{{$message}} </small> 
+                                    <br>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="tari_m3_minimo" autocomplete="off" input id="tari_m3_minimo" name="tari_m3_minimo" type="number" class="form-control" tabindex="1" required>
+                                <input class="form-control" placeholder="tari_m3_minimo" autocomplete="off" input id="tari_m3_minimo" name="tari_m3_minimo" type="number" class="form-control" tabindex="1" value="{{old('tari_m3_minimo')}}">
+                                    @error('tari_m3_minimo')
+                                        <small class="text-danger">  *{{$message}} </small> 
+                                        <br>
+                                    @enderror
                             </div>
                         </div>
                     <div>

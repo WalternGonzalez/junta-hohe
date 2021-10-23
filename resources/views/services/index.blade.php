@@ -20,7 +20,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     @can('servicio.create')
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default">
-                        <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo registro
+                        <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Servicio
                     </button>
                     @endcan
             </div>
@@ -81,7 +81,12 @@
                 <div class="card-body">
                         <div class="form-group row">
                         <div class="col-sm-12">
-                            <input class="form-control" placeholder="DESCRIPCION" id="serv_descripcion" name="serv_descripcion" type="text" class="form-control" tabindex="2">
+                            <input class="form-control" placeholder="DESCRIPCION" id="serv_descripcion" name="serv_descripcion" type="text" class="form-control" tabindex="2" value="{{old('serv_descripcion')}}">
+                                {{-- VALIDAR FORMULARIO CON JS --}}
+                                @error('serv_descripcion')
+                                    <small class="text-danger"> *{{$message}} </small> 
+                                    <br>
+                                @enderror                               
                         </div>
                     </div>
                     <div class="form-group row">

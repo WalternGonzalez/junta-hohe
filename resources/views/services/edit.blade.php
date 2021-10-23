@@ -22,8 +22,13 @@
                     @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputPassword1">DescripciÃ³n</label>
-                                <input id="serv_descripcion" name="serv_descripcion" type="text" class="form-control" value="{{$servicios->serv_descripcion}}" class="form-control" placeholder="Ingrese la descripcion">
+                                <label for="exampleInputPassword1">Descripción</label>
+                                <input id="serv_descripcion" name="serv_descripcion" type="text" class="form-control" value="{{old('serv_descripcion', $servicio->serv_descripcion)}}" class="form-control" placeholder="Ingrese la descripcion">
+                                    {{-- VALIDAR FORMULARIO CON JS --}}
+                                    @error('serv_descripcion')
+                                        <small class="text-danger"> *{{$message}} </small> 
+                                        <br>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <label>Impuesto</label>
