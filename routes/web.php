@@ -27,3 +27,5 @@ Route::resource('users', UserController::class)->only (['index', 'edit', 'update
 
 Route::resource('roles', RoleController::class)->names('roles');
     
+
+

@@ -5,6 +5,7 @@
 @section('content_header')
 <div class="d-flex align-items-center p-4 my-0 text-white bg-blue rounded shadow-sm">
     <h1>MOSTRAR MEDIDORES</h1>
+
 </div>
 
 @stop
@@ -14,6 +15,15 @@
 <button class="btn btn-primary align-items-center p-2 my-3" type="button" data-toggle="modal" data-target="#modal-default" >
   <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Medidor
 </button>
+
+<form action="{{ route('medidor.index') }}" method="GET">
+  <div class="btn-group">
+      <input type="text" name="busqueda" class="form-control">
+      <input type="submit" value="Buscar" class="btn btn-primary">
+  </div>
+</form>
+
+
 @endcan
 <br>
 <table class="table">

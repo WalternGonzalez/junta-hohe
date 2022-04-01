@@ -20,9 +20,16 @@ class MedidorController extends Controller
   }
 
 
-    public function index()
+    public function index(Request $request)
     {
-      $medidors = Medidor::all();
+
+      $busqueda = $request->input('busqueda');
+
+      $medidors = Medidor::query()
+                    ->where('medi_numero', 'LIKE', "%{$busqueda}%")
+                    ->orWhere('medi_descripcion', 'LIKE', "%{$busqueda}%")
+                    ->get();
+
       return view('medidor.index')->with('medidors',$medidors);
     }
 

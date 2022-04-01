@@ -16,5 +16,5 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
-
+    @livewireScripts
 @stop

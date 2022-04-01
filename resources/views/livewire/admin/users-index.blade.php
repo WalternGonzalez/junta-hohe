@@ -1,13 +1,8 @@
 
 {{-- TABLA PARA USUARIOS --}}
 
-<div>
     <div class="card">
-        {{-- header de busqueda por letras --}} 
-       <div class="card-headear">
-            <input wire:model="search" class="form-control" placeholder="ingrese el nombre o correo del usuario">
 
-       </div>
 
         <div class="card-body">
 
