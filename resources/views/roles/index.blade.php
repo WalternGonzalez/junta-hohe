@@ -3,7 +3,10 @@
 @section('title', 'Junta Cerro Cora ')
 
 @section('content_header')
-    <h1>Lista de Roles</h1>
+<div class="d-flex align-items-center p-4 my-0 text-white bg-blue rounded shadow-sm">
+    <h1>LISTA DE ROLES</h1>
+
+</div>
 @stop
 
 @section('content')

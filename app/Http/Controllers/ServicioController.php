@@ -21,10 +21,16 @@ class ServicioController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $servicios = Servicio::with('impuesto')->orderBy('id')->get();
-        //dd($servicios);
+
+        $busqueda = $request->input('busqueda');
+
+      $servicios = Servicio::query('impuesto')
+                      ->where('serv_descripcion', 'LIKE', "%{$busqueda}%")
+                      ->get();
+       // $servicios = Servicio::with('impuesto')->orderBy('id')->get();
+        //dd($servicios); */
 
     return view('services.index')->with('servicios',$servicios);
 

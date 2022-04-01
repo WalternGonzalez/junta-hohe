@@ -1,11 +1,18 @@
+{{-- BUTTON BUSCAR --}}
+
+<form action="{{ route('users.index') }}" method="GET">
+    <div class="btn-group">
+        <input type="text" name="busqueda" class="form-control">
+        <input type="submit" value="Buscar" class="btn btn-primary" >
+
+    </div>
+  </form> <br>
+
 
 {{-- TABLA PARA USUARIOS --}}
 
     <div class="card">
-
-
         <div class="card-body">
-
             <table class="table  table-striped">
                 <thead>
                     <tr>

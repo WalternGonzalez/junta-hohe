@@ -21,8 +21,16 @@ class UserController extends Controller
 
 
     
-    public function index()
+    public function index(Request $request)
     {
+
+     /*  $busqueda = $request->input('busqueda');
+
+        $users = User::query()
+                      ->where('name', 'LIKE', "%{$busqueda}%")
+                      ->orWhere('email', 'LIKE', "%{$busqueda}%")
+                      ->get();*/
+
         return view('users.index');
     }
 

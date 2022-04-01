@@ -92,8 +92,6 @@ class MedidorController extends Controller
 
       ]);
 
-
-
       $medidor = Medidor::find($id);
 
       $medidor->medi_numero = $request->get('medi_numero');

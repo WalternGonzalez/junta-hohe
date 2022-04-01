@@ -7,27 +7,25 @@
     <h1><b>SERVICIOS</b></h1>
 </div>
 @stop
-
 @section('content')
+
 <div class="row">
     <div class="col-md-8">
-        <form action="simple-results.html">
-            <div class="input-group">
-                <input type="search" class="form-control form-control-lg" placeholder="Ingrese su Búsqueda">
-                    <button type="submit" class="btn btn-lg btn-default">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    @can('servicio.create')
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default">
-                        <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Servicio
-                    </button>
-                    @endcan
-            </div>
-        </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        @can('servicio.create')
+            <form action="{{ route('servicio.index') }}" method="GET">
+                <div class="btn-group">
+                    <input type="text" name="busqueda" class="form-control">
+                    <input type="submit" value="Buscar" class="btn btn-primary" >
+                </div>
+            </form>
+
+        @endcan
     </div>
-</div>
-<br>
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default">
+            <i class="fa fa-plus fa"></i>&nbsp;&nbsp;Nuevo Servicio
+        </button>
+</div><br>
 
 <table class="table">
     <thead>
